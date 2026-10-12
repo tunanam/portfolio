@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguyen Tuan Nam — Full-Stack & AI Automation Portfolio</title>
+<meta name="description" content="Portfolio of Nguyen Tuan Nam — Full-Stack Developer, AI Automation Engineer, and C# .NET & SQL Server Specialist based in Hanoi, Vietnam.">
+<style>
+  :root {
+    --bg: #060a12;
+    --card: #0f172a;
+    --card-hover: #131f38;
+    --border: rgba(255,255,255,0.1);
+    --accent: #38bdf8;
+    --accent2: #10b981;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at 15% 5%, #0f284e 0%, var(--bg) 45%);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 1240px; margin: 0 auto; padding: 40px 24px 80px; }
+  
+  /* Navbar */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .logo { font-size: 20px; font-weight: 800; letter-spacing: 0.5px; color: #fff; }
+  .logo span { color: var(--accent); }
+  .nav-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #06101e;
+  }
+  .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); }
+  .btn-outline {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(23,37,68,0.75));
+    border: 1px solid rgba(56,189,248,0.28);
+    border-radius: 24px;
+    padding: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    margin-bottom: 44px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16,185,129,0.15);
+    border: 1px solid var(--accent2);
+    color: #34d399;
+    padding: 5px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .dot { width: 8px; height: 8px; background: #34d399; border-radius: 50%; display: inline-block; }
+  .hero h1 { font-size: 42px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .hero h2 { font-size: 20px; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+  .hero p { max-width: 670px; color: var(--muted); font-size: 16px; margin-bottom: 22px; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; max-width: 680px; }
+  .spill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .info-card {
+    background: rgba(6,10,18,0.8);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 26px 28px;
+    min-width: 320px;
+  }
+  .info-row { margin-bottom: 11px; font-size: 14.5px; }
+  .info-row:last-child { margin-bottom: 0; }
+  .info-row span { color: var(--muted); display: inline-block; width: 96px; }
+  .info-row strong, .info-row a { color: #fff; text-decoration: none; }
+  .info-row a:hover { color: var(--accent); }
+
+  /* Filter Bar */
+  .sec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .sec-title { font-size: 28px; font-weight: 800; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .fbtn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 8px 16px;
+    border-radius: 99px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .fbtn.active, .fbtn:hover {
+    background: rgba(56,189,248,0.16);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* Project Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+    gap: 28px;
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .hero { padding: 28px 20px; }
+    .hero h1 { font-size: 32px; }
+  }
+  .pcard {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.22s, border-color 0.22s, background 0.22s;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.38);
+    display: flex;
+    flex-direction: column;
+  }
+  .pcard:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    background: var(--card-hover);
+  }
+  .pimg-wrap {
+    position: relative;
+    cursor: zoom-in;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .pimg-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .pcard:hover .pimg-wrap img { transform: scale(1.02); }
+  .zoom-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(6,10,18,0.85);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pbody { padding: 24px; flex: 1; }
+  .ptags { margin-bottom: 10px; }
+  .ptag {
+    display: inline-block;
+    background: rgba(56,189,248,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(56,189,248,0.3);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .pbody h3 { font-size: 20px; margin-bottom: 8px; color: #fff; }
+  .pbody p { color: var(--muted); font-size: 14.5px; }
+
+  /* Lightbox Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+  .modal.open { display: flex; }
+  .modal img {
+    max-width: 95vw;
+    max-height: 92vh;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 25px 80px rgba(0,0,0,0.8);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="logo">NGUYEN TUAN <span>NAM</span></div>
+      <div class="nav-btns">
+        <a href="Nguyen_Tuan_Nam_Resume_Upwork_EN.pdf" target="_blank" class="btn btn-primary">⬇ Download Resume (PDF)</a>
+        <a href="mailto:namtuna02@gmail.com" class="btn btn-outline">✉ namtuna02@gmail.com</a>
+        <a href="https://wa.me/84973429832" target="_blank" class="btn btn-outline">📞 +84 973 429 832</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div>
+        <div class="badge"><span class="dot"></span> Available for Upwork Projects • GMT+7</div>
+        <h1>NGUYỄN TUẤN NAM</h1>
+        <h2>Full-Stack Developer • AI Automation Engineer • C# .NET & SQL Server</h2>
+        <p>I help businesses automate workflows with Python & Generative AI, capture high-intent leads with interactive web apps, and build enterprise C# .NET desktop software backed by normalized SQL Server databases.</p>
+        <div class="skill-pills">
+          <span class="spill">Python</span>
+          <span class="spill">FastAPI</span>
+          <span class="spill">React 19</span>
+          <span class="spill">AI Chatbot & LLM</span>
+          <span class="spill">Playwright Scraping</span>
+          <span class="spill">C# .NET WinForms</span>
+          <span class="spill">Microsoft SQL Server</span>
+          <span class="spill">T-SQL Triggers & SPs</span>
+          <span class="spill">Figma UI/UX</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-row"><span>Full Name:</span> <strong>Nguyen Tuan Nam</strong></div>
+        <div class="info-row"><span>Born:</span> <strong>28/11/2002</strong></div>
+        <div class="info-row"><span>Location:</span> <strong>Hanoi, Vietnam</strong></div>
+        <div class="info-row"><span>Phone/Zalo:</span> <a href="tel:+84973429832">+84 973 429 832</a></div>
+        <div class="info-row"><span>Email:</span> <a href="mailto:namtuna02@gmail.com">namtuna02@gmail.com</a></div>
+        <div class="info-row"><span>University:</span> <strong>Hanoi Open University</strong></div>
+        <div class="info-row"><span>Degree:</span> <strong>B.S. in IT (2024–2028)</strong></div>
+      </div>
+    </div>
+
+    <div class="sec-header">
+      <div class="sec-title">Featured Engineering Portfolio (7 Projects)</div>
+      <div class="filters">
+        <button class="fbtn active" onclick="filterProj('all', this)">All Projects (7)</button>
+        <button class="fbtn" onclick="filterProj('ai', this)">AI & Python Automation (3)</button>
+        <button class="fbtn" onclick="filterProj('dotnet', this)">C# .NET & SQL Server (2)</button>
+        <button class="fbtn" onclick="filterProj('uiux', this)">UI/UX & System Architecture (2)</button>
+      </div>
+    </div>
+
+    <div class="grid" id="pgrid">
+      <div class="pcard" data-cat="ai">
+        <div class="pimg-wrap" onclick="openModal('images/Project_1_AI_Chatbot_LeadGen_Cover.png')">
+          <img src="images/Project_1_AI_Chatbot_LeadGen_Cover.png" alt="Project 1">
+          <span class="zoom-hint">🔍 Click to Zoom HD</span>
+        </div>
+        <div class="pbody">
+          <div class="ptags"><span class="ptag">Python</span><span class="ptag">AI Chatbot</span><span class="ptag">Playwright</span><span class="ptag">Lead Gen</span></div>
+          <h3>1. AI Consultation Funnel & Lead Automation System</h3>
+          <p>30-second interactive multi-step insurance benefit calculator, AI consultation assistant, automated Zalo/PDF quote generator, and targeted social lead scraper.</p>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="ai">
+        <div class="pimg-wrap" onclick="openModal('images/Project_2_AetherVideo_AI_Video_Cover.png')">
+          <img src="images/Project_2_AetherVideo_AI_Video_Cover.png" alt="Project 2">
+          <span class="zoom-hint">🔍 Click to Zoom HD</span>
+        </div>
+        <div class="pbody">
+          <div class="ptags"><span class="ptag">FastAPI</span><span class="ptag">React 19</span><span class="ptag">Gemini LLM</span><span class="ptag">FFmpeg</span></div>
+          <h3>2. AetherVideo — Full-Stack AI Video Production Studio</h3>
+          <p>End-to-end 5-stage AI video pipeline automating script breakdown, character visual consistency sheets, Seedance 2.0 video synthesis, and FFmpeg 1080p multi-track assembly.</p>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="ai">
+        <div class="pimg-wrap" onclick="openModal('images/Project_3_Local_Workflow_Studio_Cover.png')">
+          <img src="images/Project_3_Local_Workflow_Studio_Cover.png" alt="Project 3">
+          <span class="zoom-hint">🔍 Click to Zoom HD</span>
+        </div>
+        <div class="pbody">
+          <div class="ptags"><span class="ptag">React Flow</span><span class="ptag">Python</span><span class="ptag">PyAutoGUI</span><span class="ptag">Desktop RPA</span></div>
+          <h3>3. Local Workflow Studio — Visual Node-Based Automation</h3>
+          <p>Drag-and-drop visual workflow studio executing local desktop automation (mouse, keyboard, AI vision click, conditional branching, and reusable sub-workflows) via Python.</p>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="dotnet">
+        <div class="pimg-wrap" onclick="openModal('images/Project_4_CSharp_Workforce_Management_Cover.png')">
+          <img src="images/Project_4_CSharp_Workforce_Management_Cover.png" alt="Project 4">
+          <span class="zoom-hint">🔍 Click to Zoom HD</span>
+        </div>
+        <div class="pbody">
+          <div class="ptags"><span class="ptag">C# .NET</span><span class="ptag">WinForms</span><span class="ptag">SQL Server</span><span class="ptag">3-Layer ERP</span></div>
+          <h3>4. Workforce & Construction Project Management Software</h3>
+          <p>3-layer C# .NET desktop ERP system managing departments, employees, construction projects, engineering milestones, role assignments, daily attendance, and KPI analytics.</p>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="dotnet">
+        <div class="pimg-wrap" onclick="openModal('images/Project_5_SQLServer_Warehouse_DB_Cover.png')">
+          <img src="images/Project_5_SQLServer_Warehouse_DB_Cover.png" alt="Project 5">
+          <span class="zoom-hint">🔍 Click to Zoom HD</span>
+        </div>
+        <div class="pbody">
+          <div class="ptags"><span class="ptag">SQL Server</span><span class="ptag">T-SQL</span><span class="ptag">Triggers & SPs</span><span class="ptag">3NF Schema</span></div>
+          <h3>5. SQL Server Enterprise Warehouse & Inventory Database</h3>
+          <p>11-table 3NF warehouse database featuring automated AFTER INSERT/UPDATE/DELETE stock validation triggers, audit logs, stored procedures, and analytical reporting views.</p>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="uiux">
+        <div class="pimg-wrap" onclick="openModal('images/Project_6_Ecommerce_UIUX_Figma_Cover.png')">
+          <img src="images/Project_6_Ecommerce_UIUX_Figma_Cover.png" alt="Project 6">
+          <span class="zoom-hint">🔍 Click to Zoom HD</span>
+        </div>
+        <div class="pbody">
+          <div class="ptags"><span class="ptag">Figma</span><span class="ptag">UI/UX Design</span><span class="ptag">E-Commerce</span><span class="ptag">Design System</span></div>
+          <h3>6. Modern Consumer Electronics E-Commerce Storefront UI/UX</h3>
+          <p>End-to-end e-commerce UI/UX design system in Figma covering Storefront Homepage, Smart Category Filter Catalog, Product Detail Showcase, and Voucher Checkout.</p>
+        </div>
+      </div>
+
+      <div class="pcard" data-cat="uiux">
+        <div class="pimg-wrap" onclick="openModal('images/Project_7_Bookstore_System_Architecture_Cover.png')">
+          <img src="images/Project_7_Bookstore_System_Architecture_Cover.png" alt="Project 7">
+          <span class="zoom-hint">🔍 Click to Zoom HD</span>
+        </div>
+        <div class="pbody">
+          <div class="ptags"><span class="ptag">System Analysis</span><span class="ptag">ERD / DFD</span><span class="ptag">Database Design</span><span class="ptag">Architecture</span></div>
+          <h3>7. Retail Bookstore System Architecture & ERD Modeling</h3>
+          <p>Comprehensive system analysis & database architecture featuring Functional Decomposition Trees, Data Flow Diagrams (DFD), and normalized Entity-Relationship Diagrams (ERD).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="imgModal" onclick="closeModal()">
+    <img id="modalImg" src="" alt="Full Size Preview">
+  </div>
+
+  <script>
+    function openModal(src) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('imgModal').classList.add('open');
+    }
+    function closeModal() {
+      document.getElementById('imgModal').classList.remove('open');
+    }
+    function filterProj(cat, btn) {
+      document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.pcard').forEach(c => {
+        c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'flex' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
